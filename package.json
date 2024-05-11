@@ -1,16 +1,17 @@
 {
-  "name": "incremental-keywords-extractor",
+  "name": "incremental-search-keywords",
   "version": "1.0.0",
   "description": "JavaScript library to extract incremental keywords from a string or object",
   "author": "Harshal Shah <harshal.shah@gmail.com> ",
-  "homepage": "https://github.com/harshals/incremental-keywords-extractor",
-  "repository": "github:harshals/incremental-keywords-extractor",
+  "homepage": "https://github.com/harshals/incremental-search-keywords",
+  "repository": "github:harshals/incremental-search-keywords",
   "license": "ISC",
   "keywords": [
     "incremental",
     "keywords",
     "object",
-    "extractor"
+    "extractor",
+    "search"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",

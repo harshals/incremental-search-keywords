@@ -12,15 +12,21 @@
     <div id="result"></div>
 
     <script type="module">
-        import  { extract } from './src/index.js';
+        //import  { extract } from './src/index.js';
+        import  { extract } from './dist/index.es.js'
         function testLibrary() {
             const input = document.getElementById('inputText').value;
             const options = {
-                minWordLength: 2,
-                skipDigits: true,
+                minWordLength: 3,
+                skipDigits: false,
                 skipSpecialCharacters: true,
-                skipStopWords: false,
-                keys: ['title']
+                skipStopWords: true,
+                keys: ['title', 'content']
+            };
+            const json = {
+                "title": "This is a sample title for testing the keyword extractor library.",
+                "description": "This is a sample description for the library.",
+                "content": "This is some future content related to the library."
             };
             const result = extract(input, options);
             document.getElementById('result').innerText = JSON.stringify(result);

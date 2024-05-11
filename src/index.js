@@ -62,18 +62,14 @@ const stopwords = [
   } else if (typeof input === 'object') {
     words = keys ? keys.map(key => input[key]) : Object.values(input);
   } else {
-    words = [input];
+    words = [input]
   }
-
   const regex = skipSpecialCharacters ? /\w+/g : /./g;
-  const allSubstrings = words.flatMap(word => 
-    word.toLowerCase().match(regex).flatMap((_, i, arr) => 
-      arr.slice(i).map((_, j) => arr.slice(i, i + j + 1).join(''))
-    )
-  );
-
-  return allSubstrings
-    .filter(word => word.length >= minWordLength)
+  const allSubstrings = words.flatMap(word => word.toLowerCase().match(regex));
+  
+  return [...new Set(allSubstrings
     .filter(word => !(skipDigits && /\d/.test(word)))
-    .filter(word => !(skipStopWords && stopWords.includes(word)));
+    .filter(word => !(skipStopWords && stopWords.includes(word)))
+    .flatMap(word => Array.from({length: word.length}, (_, i) => word.slice(0, word.length - i)))
+    .filter(word => word.length >= minWordLength))];
 }
