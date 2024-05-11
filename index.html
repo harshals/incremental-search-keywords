@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Keyword Extractor Library</title>
+</head>
+<body>
+    <h1>Test Keyword Extractor Library</h1>
+    <textarea id="inputText" rows="4" cols="50">
+        Hello World. This is a test.
+    </textarea>
+    <button onclick="testLibrary()">Test Library</button>
+    <div id="result"></div>
+
+    <script type="module">
+        import  { extract } from './src/index.js';
+        function testLibrary() {
+            const input = document.getElementById('inputText').value;
+            const options = {
+                minWordLength: 2,
+                skipDigits: true,
+                skipSpecialCharacters: true,
+                skipStopWords: false,
+                keys: ['title']
+            };
+            const result = extract(input, options);
+            document.getElementById('result').innerText = JSON.stringify(result);
+        }
+        window.testLibrary = testLibrary;
+    </script>
+</body>
+</html>
