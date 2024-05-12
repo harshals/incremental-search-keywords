@@ -1,5 +1,5 @@
 
-const IncrementalKeywordsExtractor = require('incremental-search-keywords');
+const Extractor= require('incremental-search-keywords');
 
 const options = {
                 minWordLength: 3,

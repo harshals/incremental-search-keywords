@@ -7,7 +7,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
-      name: "IncrementalKeywordsExtractor",
+      name: "Extractor",
       formats: ["es", "umd", "cjs", "iife"],
       fileName:"index"
     },
