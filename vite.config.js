@@ -8,8 +8,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
       name: "IncrementalKeywordsExtractor",
-      formats: ["es", "cjs", "umd", "iife"],
-      fileName: (format) => `index.${format}.js`,
+      formats: ["es", "umd", "cjs", "iife"],
+      fileName:"index"
     },
   },
 });

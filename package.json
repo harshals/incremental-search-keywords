@@ -1,6 +1,6 @@
 {
   "name": "incremental-search-keywords",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript library to extract incremental keywords from a string or object",
   "author": "Harshal Shah <harshal.shah@gmail.com> ",
   "homepage": "https://github.com/harshals/incremental-search-keywords",
@@ -13,8 +13,14 @@
     "extractor",
     "search"
   ],
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+   "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
   "type": "module",
   "files": [
     "dist"

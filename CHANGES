@@ -1,0 +1,12 @@
+# Changelog
+
+## [1.0.1] - 2024-05-12
+
+### Fixes
+
+- Support for commonJS .
+
+## [1.0.0] - 2024-05-11
+
+- Initial release of the library.
+- `extract` function to extract keywords from a string, an object, or an array of strings.-
