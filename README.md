@@ -62,3 +62,34 @@ console.log(keywords);
 ```
 
 In this example, the `extract` function will extract keywords from the `input` string based on the `options` object. The `options` object specifies that the minimum length of a keyword should be 3, digits should be skipped, special characters should be skipped, stop words should be skipped, and the stop words are 'the', 'a', 'is', and 'for'.
+
+## Default Options in `extract`
+
+The `extract` function has some default options that you can override if necessary. Here's a description of each option:
+
+- `minWordLength`: This option specifies the minimum length of a word to be considered for extraction. The default minimum length is 3.
+
+- `skipDigits`: This option specifies whether to skip words that are purely digits. The default is true, meaning words that are purely digits are skipped.
+
+- `skipSpecialCharacters`: This option specifies whether to skip words that contain special characters. The default is true, meaning words with special characters are skipped.
+
+- `skipStopWords`: This option specifies whether to skip words that are considered common, or "stop words". The default is true, meaning stop words are skipped.
+
+- `stopWords`: This option allows you to provide your own list of stop words. The default is a predefined list of common stop words.
+
+- `keys`: This option allows you to provide a list of keys to extract from the input if the input is an object. The default is null, meaning all keys are considered.
+
+Here's an example of how to override the default options:
+
+```javascript
+const options = {
+  minWordLength: 2,
+  skipDigits: false,
+  skipSpecialCharacters: false,
+  skipStopWords: false,
+  stopWords: ['my', 'custom', 'stopwords'],
+  keys: ['key1', 'key2']
+};
+
+const keywords = extract('This is a test string', options);
+```

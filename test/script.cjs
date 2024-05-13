@@ -2,11 +2,7 @@
 const Extractor= require('incremental-search-keywords');
 
 const options = {
-                minWordLength: 3,
-                skipDigits: false,
-                skipSpecialCharacters: true,
-                skipStopWords: true,
-                keys: ['title', 'content']
+                skipStopWords: false,
             }
  const json = {
                 "title": "This is a sample title for testing the keyword extractor library.",

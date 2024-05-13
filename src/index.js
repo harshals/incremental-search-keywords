@@ -48,10 +48,10 @@ const stopwords = [
 
  export const extract = (input, options = {}) => {
   const {
-    minWordLength = 1,
-    skipDigits = false,
-    skipSpecialCharacters = false,
-    skipStopWords = false,
+    minWordLength = 3,
+    skipDigits = true,
+    skipSpecialCharacters = true,
+    skipStopWords = true,
     stopWords = stopwords,
     keys = null
   } = options;

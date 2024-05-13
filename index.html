@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Test Keyword Extractor Library</title>
-    <script type="module" src="./dist/index.js"></script>
+    <!-- <script type="module" src="./src/index.js"></script> -->
 </head>
 <body>
     <h1>Test Keyword Extractor Library</h1>
@@ -13,24 +13,19 @@
     <div id="result"></div>
 
     <script type="module">
-        //import  { extract } from './src/index.js';
-        //import  { extract } from './src/index.js';
+        import  { extract } from './src/index.js';
         
         function testLibrary() {
             const input = document.getElementById('inputText').value;
             const options = {
-                minWordLength: 3,
-                skipDigits: false,
-                skipSpecialCharacters: true,
                 skipStopWords: true,
-                keys: ['title', 'content']
             };
             const json = {
                 "title": "This is a sample title for testing the keyword extractor library.",
                 "description": "This is a sample description for the library.",
                 "content": "This is some future content related to the library."
             };
-            const result = Extractor.extract(input, options);
+            const result = extract(input, options);
             document.getElementById('result').innerText = JSON.stringify(result);
         }
         window.testLibrary = testLibrary;
