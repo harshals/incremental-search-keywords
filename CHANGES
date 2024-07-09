@@ -1,9 +1,9 @@
 # Changelog
-## [1.0.2] - 2024-07-09
+## [1.0.3] - 2024-07-09
 
 - Fixed toLowerCase bug 
 
-## [1.0.1] - 2024-05-13
+## [1.0.2] - 2024-05-13
 
 - changed default options
 
