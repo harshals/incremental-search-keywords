@@ -6,12 +6,13 @@ const options = {
                 skipDigits: false,
                 skipSpecialCharacters: true,
                 skipStopWords: true,
-                keys: ['title', 'content']
+                keys: ['title', 'content', 'order_date']
             }
  const json = {
                 "title": "This is a sample title for testing the keyword extractor library.",
                 "description": "This is a sample description for the library.",
-                "content": "This is some future content related to the library."
+                "content": "This is some future content related to the library.",
+                "order_date": 1231231
             };
 const result = extract(json, options);
 console.log(result);

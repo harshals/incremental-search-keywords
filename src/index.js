@@ -65,7 +65,7 @@ const stopwords = [
     words = [input]
   }
   const regex = skipSpecialCharacters ? /\w+/g : /./g;
-  const allSubstrings = words.flatMap(word => word.toLowerCase().match(regex));
+  const allSubstrings = words.flatMap(word => word.toString().toLowerCase().match(regex));
   
   return [...new Set(allSubstrings
     .filter(word => !(skipDigits && /\d/.test(word)))
