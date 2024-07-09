@@ -53,23 +53,25 @@ const stopwords = [
     skipSpecialCharacters = true,
     skipStopWords = true,
     stopWords = stopwords,
+    asItIs = null,
     keys = null
   } = options;
 
-  let words;
+  let words, fixedWords = [];
   if (Array.isArray(input)) {
     words = input;
   } else if (typeof input === 'object') {
-    words = keys ? keys.map(key => input[key]) : Object.values(input);
+    words = Array.isArray(keys) ? keys.map(key => input[key]) : Object.values(input);
+    fixedWords = Array.isArray(asItIs) ? Object.keys(input).filter(key => asItIs.includes(key)).map(key => input[key]) : [];
   } else {
     words = [input]
   }
   const regex = skipSpecialCharacters ? /\w+/g : /./g;
   const allSubstrings = words.flatMap(word => word.toString().toLowerCase().match(regex));
-  
+   
   return [...new Set(allSubstrings
     .filter(word => !(skipDigits && /\d/.test(word)))
     .filter(word => !(skipStopWords && stopWords.includes(word)))
     .flatMap(word => Array.from({length: word.length}, (_, i) => word.slice(0, word.length - i)))
-    .filter(word => word.length >= minWordLength))];
+    .filter(word => word.length >= minWordLength)), ...fixedWords];
 }

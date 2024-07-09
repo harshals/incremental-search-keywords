@@ -26,7 +26,9 @@ const options = {
     skipDigits: true,
     skipSpecialCharacters: true,
     skipStopWords: true,
-    stopWords: ['the', 'a', 'is', 'for']
+    stopWords: ['the', 'a', 'is', 'for'],
+    asItIs: ['keyword', 'extractor'] // Array of words to be included as they are
+
 };
 
 const keywords = extract(input, options);
@@ -78,6 +80,8 @@ The `extract` function has some default options that you can override if necessa
 - `stopWords`: This option allows you to provide your own list of stop words. The default is a predefined list of common stop words.
 
 - `keys`: This option allows you to provide a list of keys to extract from the input if the input is an object. The default is null, meaning all keys are considered.
+
+- `asItIs`: This option allows you to specify an array of words that should be included in the output without modification, regardless of other filtering options such as `skipDigits`, `skipSpecialCharacters`, or `skipStopWords`. This is useful for ensuring specific keywords or phrases are always included in the extracted results. The default is an empty array, meaning no words are included as-is by default.
 
 Here's an example of how to override the default options:
 
