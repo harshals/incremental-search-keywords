@@ -81,6 +81,9 @@ The `extract` function has some default options that you can override if necessa
 
 - `keys`: This option allows you to provide a list of keys to extract from the input if the input is an object. The default is null, meaning all keys are considered.
 
+- `omit`: This option allows you to provide a list of keys to omit from the input if the input is an object. The default is an empty array, meaning no keys are omitted by default. In case both keys and omit are present, keys takes priority
+
+
 - `asItIs`: This option allows you to specify an array of words that should be included in the output without modification, regardless of other filtering options such as `skipDigits`, `skipSpecialCharacters`, or `skipStopWords`. This is useful for ensuring specific keywords or phrases are always included in the extracted results. The default is an empty array, meaning no words are included as-is by default.
 
 Here's an example of how to override the default options:

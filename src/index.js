@@ -23,6 +23,9 @@
  * options.skipSpecialCharacters - skip special characters from extraction
  * options.skipStopWords - skip stop words from extraction
  * options.stopWords - custom stop words
+ * options.keys - only include specific keys from object
+ * options.asItIs - include specific keys as it is without extraction
+ * options.omit - exclude specific keys from extraction
  * 
  */
 const stopwords = [
@@ -47,31 +50,106 @@ const stopwords = [
 ];
 
  export const extract = (input, options = {}) => {
+
+  if (typeof options !== 'object' || options === null) {
+    throw new TypeError('options must be a non-null object');
+  }
+  
   const {
     minWordLength = 3,
     skipDigits = true,
     skipSpecialCharacters = true,
     skipStopWords = true,
     stopWords = stopwords,
-    asItIs = null,
-    keys = null
+    asItIs = [],
+    keys = [],
+    omit = []
   } = options;
+  
+  if (typeof minWordLength !== 'number') {
+    throw new TypeError('minWordLength must be a number');
+  }
+  
+  if (typeof skipDigits !== 'boolean') {
+    throw new TypeError('skipDigits must be a boolean');
+  }
+  
+  if (typeof skipSpecialCharacters !== 'boolean') {
+    throw new TypeError('skipSpecialCharacters must be a boolean');
+  }
+  
+  if (typeof skipStopWords !== 'boolean') {
+    throw new TypeError('skipStopWords must be a boolean');
+  }
+  
+  if (!Array.isArray(stopWords)) {
+    throw new TypeError('stopWords must be an array');
+  }
+  
+  if (!Array.isArray(asItIs)) {
+    throw new TypeError('asItIs must be an array');
+  }
+  
+  if (!Array.isArray(keys)) {
+    throw new TypeError('keys must be an array');
+  }
+  
+  if (!Array.isArray(omit)) {
+    throw new TypeError('omit must be an array');
+  }
+
+
 
   let words, fixedWords = [];
   if (Array.isArray(input)) {
+    
     words = input;
+
   } else if (typeof input === 'object') {
-    words = Array.isArray(keys) ? keys.map(key => input[key]) : Object.values(input);
-    fixedWords = Array.isArray(asItIs) ? Object.keys(input).filter(key => asItIs.includes(key)).map(key => input[key]) : [];
+
+    omit.push(...asItIs);
+
+    words = (keys.length)
+              ? keys.map(key => input[key]) 
+
+              : (omit.length)
+
+                  ? Object.keys(input)
+                      .filter(key => !omit.includes(key))
+                      .map(key => input[key])
+    
+                  : Object.values(input);
+    
+    fixedWords = Array.isArray(asItIs) 
+                  ? Object.keys(input)
+                      .filter(key => asItIs.includes(key)).map(key => input[key]) 
+                  : [];
+
   } else {
     words = [input]
   }
+  words = words.filter(word => 
+            word !== false 
+            && word !== 0 
+            && word.toString().trim() !== "" 
+            && word !== null 
+            && word !== undefined 
+            && !Number.isNaN(word)
+            && word !== Infinity
+  )
   const regex = skipSpecialCharacters ? /\w+/g : /./g;
-  const allSubstrings = words.flatMap(word => word.toString().toLowerCase().match(regex));
+
+  const allSubstrings = words.flatMap(word =>  
+      word.toString().toLowerCase().match(regex)
+  );
    
   return [...new Set(allSubstrings
     .filter(word => !(skipDigits && /\d/.test(word)))
     .filter(word => !(skipStopWords && stopWords.includes(word)))
-    .flatMap(word => Array.from({length: word.length}, (_, i) => word.slice(0, word.length - i)))
+    .flatMap(word => 
+      Array.from({ length: word.length}, (_, i) => 
+          word.slice(0, word.length - i)
+      )
+    )
     .filter(word => word.length >= minWordLength)), ...fixedWords];
 }
