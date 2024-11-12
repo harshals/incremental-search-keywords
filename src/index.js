@@ -131,11 +131,11 @@ const stopwords = [
   words = words.filter(word => 
             word !== false 
             && word !== 0 
-            && word.toString().trim() !== "" 
             && word !== null 
             && word !== undefined 
             && !Number.isNaN(word)
             && word !== Infinity
+            && word.toString().trim() !== "" 
   )
   const regex = skipSpecialCharacters ? /\w+/g : /./g;
 

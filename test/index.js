@@ -4,22 +4,19 @@ import { extract } from "../src/index.js";
 
 const options = {
                 minWordLength: 3,
-                skipDigits: false,
+                skipDigits: true,
                 skipSpecialCharacters: true,
                 skipStopWords: true,
                 omit:['due_date', 'order_date'],
+                keys: ['order_nos', 'description1'],
                 asItIs : ['status']
             }
  const json = {
-    order_no: NaN,
-    order_date: "2023-08-16T00:28:32.454Z",
-    due_date: "2025-08-15T08:28:24.443Z",
-    description: 'The Football Is Good For Training And Recreational Purposes',
-    status: 'New Modification Required!',
-    amount: Number.POSITIVE_INFINITY,
-    currency: '   ',
-    customer: '',
-    discount : 400.00
-  };
+  order_no: null,
+  order_date: new Date(),
+  due_date: new Date(),
+  description: "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+  status: 'Job Done'
+}
 const result = extract(json, options);
 console.log(result)
